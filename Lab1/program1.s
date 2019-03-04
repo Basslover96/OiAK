@@ -1,5 +1,5 @@
-# Zamiana dużych liter na małe i odwrotnie. Inne znaki pomijamy.
-# Kompilacja gcc -no-pie -g -o zad2 zad2.s
+# Dodanie 5 do kodu cyfr, 3 do wielkich liter, reszta bez zmian.
+# Kompilacja gcc -no-pie -g -o program1 program1.s
 
 .data
 STDIN = 0
@@ -46,15 +46,15 @@ movq $0, %rdi
 
 loop_start:
 movb TEXT_TO_CHANGE(, %rdi, 1), %bl
-cmpb $'a', %bl
-# Kod litery <'a' - skok do sprawdzenia, czy znak jest dużą literą.
-jl maybe_big_letter
-cmpb $'z', %bl
-# Kod litery >'z' - inny znak - skok do przepisania
-jg other_sign
+cmpb $'9', %bl
+# Kod znaku >'9' - skok do sprawdzenia, czy znak jest dużą literą.
+jg maybe_big_letter
+cmpb $'0', %bl
+# Kod znaku <'0' - inny znak - skok do przepisania
+jl other_sign
 
-# Mała litera
-andb $0xDF, %bl
+# Liczba
+addb $5, %bl
 movb %bl, TEXT_TO_PRINT(, %rdi, 1)
 jmp end_loop
 
@@ -67,7 +67,7 @@ cmpb $'Z', %bl
 jg other_sign
 
 # Duża litera
-xorb $0x20, %bl
+addb $3, %bl
 movb %bl, TEXT_TO_PRINT(, %rdi, 1)
 jmp end_loop
 
