@@ -21,8 +21,8 @@ main:
 # Otwarcie pliku
 movq $SYSOPEN, %rax
 movq $FILE, %rdi
-movq $FREAD, %rsi
-movq $0644, %rdx
+movq $00, %rsi
+movq $0444, %rdx
 syscall
 
 movq %rax, %r9
@@ -124,7 +124,7 @@ movb $'\n', BASE_E(,%r15,1)
 
 movq $SYSOPEN, %rax
 movq $FILE_OUT, %rdi
-movq $FWRITE, %rsi
+movq $0101, %rsi
 movq $0644, %rdx
 syscall
 
