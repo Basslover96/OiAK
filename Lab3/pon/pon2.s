@@ -15,13 +15,11 @@ main:
 movq $N0, %r8
 movq $N1, %r9
 movq $N, %r10
-xor %rcx, %rcx
 call calculate
 
 xor %rax, %rax
 movq $OUTPUT, %rdi
-movq $N, %rsi
-movq %rbx, %rdx
+movq %rbx, %rsi
 call printf
 
 # Zakończenie działania programu
@@ -36,26 +34,29 @@ cmpq $1, %r10
 jl return0
 je return1
 
-subq $1, %r10
+xor %rcx, %rcx
+decq %r10
+pushq %rcx
 call calculate
+popq %rcx
 addq $1, %r10
 
 movq %rbx, %rax
 movq $-2, %rbx
 xor %rdx, %rdx
 mulq %rbx
-
 addq %rax, %rcx
 
 sub $2, %r10
+pushq %rcx
 call calculate
+popq %rcx
 addq $2, %r10
 
 movq %rbx, %rax
 movq $3, %rbx
 xor %rdx, %rdx
 mulq %rbx
-
 addq %rax, %rcx
 movq %rcx, %rbx
 
