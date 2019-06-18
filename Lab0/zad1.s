@@ -18,9 +18,9 @@ WRITE_TEXT_LENGTH = .-WRITE_TEXT
 .comm TEXT_TO_PRINT, 512
 
 .text
-.globl main
+.globl _start
 
-main:
+_start:
 
 # Prośba o wpisanie tekstu.
 movq $SYSWRITE, %rax

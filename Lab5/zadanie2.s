@@ -72,7 +72,7 @@ and $0xFFFE, %ax # Set 0
 jmp END
 
 SET_INVALID:
-xor $0x1, %ax # Set 1
+or $0x1, %ax # Set 1
 jmp END
 
 DENORMAL_OPERAND:
@@ -83,7 +83,7 @@ and $0xFFFD, %ax # Set 0
 jmp END
 
 SET_DENORMAL:
-xor $0x2, %ax # Set 1
+or $0x2, %ax # Set 1
 jmp END
 
 ZERO_DIVIDE:
@@ -93,7 +93,7 @@ jg SET_ZERO
 and $0xFFFB, %ax # Set 0
 jmp END
 SET_ZERO:
-xor $0x4, %ax # Set 1
+or $0x4, %ax # Set 1
 jmp END
 
 OVERFLOW:
@@ -102,7 +102,7 @@ jg SET_OVERFLOW
 and $0xFFF7, %ax # Set 0
 jmp END
 SET_OVERFLOW:
-xor $0x8, %ax # Set 1
+or $0x8, %ax # Set 1
 jmp END
 
 UNDERFLOW:
@@ -111,7 +111,7 @@ jg SET_UNDERFLOW
 and $0xFFEF, %ax
 jmp END
 SET_UNDERFLOW:
-xor $0x10, %ax # Set 1
+or $0x10, %ax # Set 1
 jmp END
 
 PRECISION:
@@ -120,7 +120,7 @@ jg SET_PRECISION
 and $0xFFDF, %ax # Set 0
 jmp END
 SET_PRECISION:
-xor $0x20, %ax # Set 1
+or $0x20, %ax # Set 1
 jmp END
 
 END:
